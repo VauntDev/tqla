@@ -1,2 +1,2 @@
-# tequila
+# tqla
 mas sql templating 
