@@ -2,13 +2,14 @@ package tqla
 
 import (
 	"bytes"
+	"fmt"
 	"text/template"
 )
 
 type tqla struct {
-	tmpl   *sqlTemplate
-	parser *sqlParser
-	opts   *options
+	tmpl        *sqlTemplate
+	parser      *sqlParser
+	placeholder Placeholder
 }
 
 func New(options ...Option) (*tqla, error) {
@@ -19,15 +20,22 @@ func New(options ...Option) (*tqla, error) {
 		}
 	}
 
-	placeHolder := newSqlParser()
+	parser := newSqlParser()
 	funcs := template.FuncMap{
-		"_placeholder_": placeHolder.parsefunc,
+		"_sql_parser_": parser.parsefunc,
+	}
+
+	for k, v := range opts.funcs {
+		if k == "_sql_parser_" {
+			return nil, fmt.Errorf("invalid function name, _sql_parser_ is reserved")
+		}
+		funcs[k] = v
 	}
 
 	tmpl := newSqlTemplate("tqla", funcs)
 	return &tqla{tmpl: tmpl,
-		parser: placeHolder,
-		opts:   opts,
+		parser:      parser,
+		placeholder: opts.placeholder,
 	}, nil
 }
 
@@ -41,7 +49,7 @@ func (t *tqla) Compile(statement string, data any) (string, []any, error) {
 		return "", nil, err
 	}
 
-	sql, err := t.opts.placeholder.Format(b.String())
+	sql, err := t.placeholder.Format(b.String())
 	if err != nil {
 		return "", nil, err
 	}

@@ -6,8 +6,21 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+type testExample struct {
+	FirstName string
+	LastName  string
+	Page      *testExampePage
+}
+
+type testExampePage struct {
+	Id    int
+	Dttm  string
+	Limit int
+}
+
 func TestTqla(t *testing.T) {
 	testCases := []struct {
+		name         string
 		templateSql  string
 		placeholder  Placeholder
 		data         any
@@ -15,20 +28,204 @@ func TestTqla(t *testing.T) {
 		expectedArgs []any
 	}{
 		{
-			templateSql: `{{$column:=true -}}
-			select * from table where v = {{.Value }} 
-			{{if $column -}}
-			and c = {{$column -}}
-			{{end}}`,
+			name: "condition column where filter",
+			templateSql: `{{$column:=true }}
+				select * from table where v = {{.Value }}
+				{{if $column }}
+					and c = {{$column }}
+				{{end}}`,
 			data: struct {
 				Value int
 			}{Value: 5},
 			placeholder: Dollar,
-			expectedSql: `select * from table where v = $1 
-			and c = $2`,
+			expectedSql: `select * from table where v = $1 and c = $2`,
 			expectedArgs: []any{
 				5,
 				true,
+			},
+		},
+		{
+			name: "where in string slice filter",
+			templateSql: `
+				select * from table where v in ( {{ .Value }} )`,
+			data: struct {
+				Value []string
+			}{Value: []string{"v1", "v2", "v3"}},
+			placeholder: Dollar,
+			expectedSql: `select * from table where v in ( $1 )`,
+			expectedArgs: []any{
+				[]string{"v1", "v2", "v3"},
+			},
+		},
+		{
+			name: "complex condition where filter empty value",
+			templateSql: `
+				select c1,
+				c2,
+				c3,
+				COALESCE(c4,'')
+				from d.table as t
+				where c1 ilike ({{ .FirstName }})
+				{{ if .LastName }}
+					and c2 = {{ .LastName }}
+				{{ end }}
+				{{ if .Page }}
+					and (c3,c4) > ({{ .Page.Id }}, {{ .Page.Dttm }})
+				{{ end }}`,
+			data: &testExample{
+				FirstName: "test",
+				Page: &testExampePage{
+					Id:   1,
+					Dttm: "2023-08-08",
+				},
+			},
+			placeholder: Dollar,
+			expectedSql: `select c1, c2, c3, COALESCE(c4,'') from d.table as t where c1 ilike ($1) and (c3,c4) > ($2, $3)`,
+			expectedArgs: []any{"test",
+				1,
+				"2023-08-08",
+			},
+		},
+		{
+			name: "complex condition where filter full value",
+			templateSql: `
+				select c1,
+				c2,
+				c3,
+				COALESCE(c4,'')
+				from d.table as t
+				where c1 ilike ({{ .FirstName }})
+				{{ if .LastName }}
+					and c2 = {{ .LastName }}
+				{{ end }}
+				{{ if .Page }}
+					and (c3,c4) > ({{ .Page.Id }}, {{ .Page.Dttm }})
+				{{ end }}`,
+			data: &testExample{
+				FirstName: "test",
+				LastName:  "test",
+				Page: &testExampePage{
+					Id:   1,
+					Dttm: "2023-08-08",
+				},
+			},
+			placeholder: Dollar,
+			expectedSql: `select c1, c2, c3, COALESCE(c4,'') from d.table as t where c1 ilike ($1) and c2 = $2 and (c3,c4) > ($3, $4)`,
+			expectedArgs: []any{"test",
+				"test",
+				1,
+				"2023-08-08",
+			},
+		},
+		{
+			name: "complex condition where filter missing page",
+			templateSql: `
+				select c1,
+				c2,
+				c3,
+				COALESCE(c4,'')
+				from d.table as t
+				where c1 ilike ({{ .FirstName }})
+				{{ if .LastName }}
+					and c2 = {{ .LastName }}
+				{{ end }}
+				{{ if .Page }}
+					and (c3,c4) > ({{ .Page.Id }}, {{ .Page.Dttm }})
+				{{ end }}`,
+			data: &testExample{
+				FirstName: "test",
+				LastName:  "test",
+			},
+			placeholder: Dollar,
+			expectedSql: `select c1, c2, c3, COALESCE(c4,'') from d.table as t where c1 ilike ($1) and c2 = $2`,
+			expectedArgs: []any{"test",
+				"test",
+			},
+		},
+		{
+			name: "complex condition where filter full value with max limit",
+			templateSql: `
+				{{ $maxLimit := 100 }}
+				select c1,
+					c2,
+					c3,
+					COALESCE(c4,'')
+				from d.table as t
+				where c1 ilike ({{ .FirstName }})
+				{{ if .LastName }}
+					and c2 = {{ .LastName }}
+				{{ end }}
+				{{ if .Page }}
+					and (c3,c4) > ({{ .Page.Id }}, {{ .Page.Dttm }})
+				{{ end }}
+				{{ if gt .Page.Limit $maxLimit }}
+					LIMIT {{ $maxLimit }}
+				{{ else }}
+					LIMIT {{ .Page.Limit }}
+				{{ end }}`,
+			data: &testExample{
+				FirstName: "test",
+				LastName:  "test",
+				Page: &testExampePage{
+					Id:    1,
+					Dttm:  "2023-08-08",
+					Limit: 10,
+				},
+			},
+			placeholder: Dollar,
+			expectedSql: `select c1, c2, c3, COALESCE(c4,'') from d.table as t where c1 ilike ($1) and c2 = $2 and (c3,c4) > ($3, $4) LIMIT $5`,
+			expectedArgs: []any{"test",
+				"test",
+				1,
+				"2023-08-08",
+				10,
+			},
+		},
+		{
+			name: "complex nested query/template",
+			templateSql: `
+			{{ define "nested_select" }}
+				select count(*) as count_v
+				from d.table as t
+				join d.table_2 as t2 on t.c1 = t2.c2
+				where t.c3 ilike {{ .FirstName }} and t.c4 = 'value'
+			{{end}}
+			{{ $maxLimit := 100 }}
+			select c1,
+				c2,
+				c3,
+				COALESCE(c4,''),
+				({{ template "nested_select" . }})
+			from d.table as t
+			where c1 ilike ({{ .FirstName }})
+			{{ if .LastName }}
+				and c2 = {{ .LastName }}
+			{{ end }}
+			{{ if .Page }}
+				and (c3,c4) > ({{ .Page.Id }}, {{ .Page.Dttm }})
+			{{ end }}
+			{{ if gt .Page.Limit $maxLimit }}
+				LIMIT {{ $maxLimit }}
+			{{ else }}
+				LIMIT {{ .Page.Limit }}
+			{{ end }}`,
+			data: &testExample{
+				FirstName: "test",
+				LastName:  "test",
+				Page: &testExampePage{
+					Id:    1,
+					Dttm:  "2023-08-08",
+					Limit: 10,
+				},
+			},
+			placeholder: Dollar,
+			expectedSql: `select c1, c2, c3, COALESCE(c4,''), ( select count(*) as count_v from d.table as t join d.table_2 as t2 on t.c1 = t2.c2 where t.c3 ilike $1 and t.c4 = 'value' ) from d.table as t where c1 ilike ($2) and c2 = $3 and (c3,c4) > ($4, $5) LIMIT $6`,
+			expectedArgs: []any{"test",
+				"test",
+				"test",
+				1,
+				"2023-08-08",
+				10,
 			},
 		},
 	}

@@ -3,13 +3,12 @@ package tqla
 import (
 	"bytes"
 	"fmt"
+	"regexp"
 	"strings"
 )
 
-// PlaceholderFormat is the interface that wraps the ReplacePlaceholders method.
-//
-// ReplacePlaceholders takes a SQL statement and replaces each question mark
-// placeholder with a (possibly different) SQL placeholder.
+// Placeholder defines a interace that exposes a Format function.
+// The Format function is intened for sql placeholder formating (i.e ?,$,:,@)
 type Placeholder interface {
 	Format(sql string) (string, error)
 }
@@ -65,7 +64,6 @@ func format(sql, prefix string) (string, error) {
 		if p == -1 {
 			break
 		}
-
 		if len(sql[p:]) > 1 && sql[p:p+2] == "??" { // escape ?? => ?
 			buf.WriteString(sql[:p])
 			buf.WriteString("?")
@@ -80,7 +78,8 @@ func format(sql, prefix string) (string, error) {
 			sql = sql[p+1:]
 		}
 	}
-
 	buf.WriteString(sql)
-	return buf.String(), nil
+	whitespaceRegex := regexp.MustCompile(`\s+`)
+	s := whitespaceRegex.ReplaceAllString(strings.TrimSpace(buf.String()), " ")
+	return s, nil
 }

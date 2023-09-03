@@ -77,12 +77,12 @@ func formatNode(t *parse.Tree, n parse.Node) {
 			return
 		}
 		cmd := v.Cmds[len(v.Cmds)-1]
-		if len(cmd.Args) == 1 && cmd.Args[0].Type() == parse.NodeIdentifier && cmd.Args[0].(*parse.IdentifierNode).Ident == "_placeholder_" {
+		if len(cmd.Args) == 1 && cmd.Args[0].Type() == parse.NodeIdentifier && cmd.Args[0].(*parse.IdentifierNode).Ident == "_sql_parser_" {
 			return
 		}
 		v.Cmds = append(v.Cmds, &parse.CommandNode{
 			NodeType: parse.NodeCommand,
-			Args:     []parse.Node{parse.NewIdentifier("_placeholder_").SetTree(t).SetPos(cmd.Pos)},
+			Args:     []parse.Node{parse.NewIdentifier("_sql_parser_").SetTree(t).SetPos(cmd.Pos)},
 		})
 	}
 }

@@ -1,7 +1,10 @@
 package tqla
 
+import "text/template"
+
 type options struct {
 	placeholder Placeholder
+	funcs       template.FuncMap
 }
 
 type Option interface {
@@ -16,15 +19,22 @@ func (flo *funcOption) Apply(con *options) error {
 	return flo.f(con)
 }
 
-func newFuncNodeOption(f func(*options) error) *funcOption {
+func newFuncOption(f func(*options) error) *funcOption {
 	return &funcOption{
 		f: f,
 	}
 }
 
 func WithPlaceHolder(p Placeholder) Option {
-	return newFuncNodeOption(func(o *options) error {
+	return newFuncOption(func(o *options) error {
 		o.placeholder = p
+		return nil
+	})
+}
+
+func WithFuncMap(funcs template.FuncMap) Option {
+	return newFuncOption(func(o *options) error {
+		o.funcs = funcs
 		return nil
 	})
 }
