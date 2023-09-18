@@ -10,7 +10,7 @@ mas sql templating!
 
 ## Use
 
-Tqla is a small leight weight text parser that wraps the golang `text/template` standard library. The primary purpose of tqla is to parse a text template and replace any variable with a placeholder. Variables that are replaced with placeholders are added to an args slice that can be passed to standard db driver.
+Tqla is a small light weight text parser that wraps the golang `text/template` standard library. The primary purpose of tqla is to parse a text template and replace any variable with a placeholder. Variables that are replaced with placeholders are added to an args slice that can be passed to standard db driver.
 
 Currently, tqla does no sql validation, this may change in the future.
 
