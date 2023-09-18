@@ -1,6 +1,9 @@
 package tqla
 
-import "text/template"
+import (
+	"fmt"
+	"text/template"
+)
 
 type options struct {
 	placeholder Placeholder
@@ -34,6 +37,11 @@ func WithPlaceHolder(p Placeholder) Option {
 
 func WithFuncMap(funcs template.FuncMap) Option {
 	return newFuncOption(func(o *options) error {
+		for k := range funcs {
+			if k == "_sql_parser_" {
+				return fmt.Errorf("invalid function name, _sql_parser_ is reserved")
+			}
+		}
 		o.funcs = funcs
 		return nil
 	})
@@ -42,5 +50,6 @@ func WithFuncMap(funcs template.FuncMap) Option {
 func defaultOptions() *options {
 	return &options{
 		placeholder: Question,
+		funcs:       template.FuncMap{},
 	}
 }

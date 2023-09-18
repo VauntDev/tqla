@@ -2,16 +2,15 @@ package tqla
 
 import (
 	"bytes"
-	"fmt"
 	"text/template"
 )
 
 type tqla struct {
-	tmpl        *sqlTemplate
-	parser      *sqlParser
 	placeholder Placeholder
+	funcs       template.FuncMap
 }
 
+// New creates a new tqla instance that can be used to generate dynamic queries via sql text/templating
 func New(options ...Option) (*tqla, error) {
 	opts := defaultOptions()
 	for _, opt := range options {
@@ -20,32 +19,30 @@ func New(options ...Option) (*tqla, error) {
 		}
 	}
 
-	parser := newSqlParser()
-	funcs := template.FuncMap{
-		"_sql_parser_": parser.parsefunc,
-	}
-
-	for k, v := range opts.funcs {
-		if k == "_sql_parser_" {
-			return nil, fmt.Errorf("invalid function name, _sql_parser_ is reserved")
-		}
-		funcs[k] = v
-	}
-
-	tmpl := newSqlTemplate("tqla", funcs)
-	return &tqla{tmpl: tmpl,
-		parser:      parser,
+	return &tqla{
 		placeholder: opts.placeholder,
+		funcs:       opts.funcs,
 	}, nil
 }
 
+// Compile accepts a string sql template and a data object that
+// is used to build the db args. A finalized sql statement is returned with placeholders where dynamic
+// arguments are passed as well as a slice of args. Returns a error if the sql template cannot be parsed. Compile
+// is safe to call multiple times.
 func (t *tqla) Compile(statement string, data any) (string, []any, error) {
-	if err := t.tmpl.parse(statement); err != nil {
+
+	parser := newSqlParser()
+
+	t.funcs["_sql_parser_"] = parser.parsefunc
+
+	tmpl := newSqlTemplate("tqla", t.funcs)
+
+	if err := tmpl.parse(statement); err != nil {
 		return "", nil, err
 	}
 
 	b := &bytes.Buffer{}
-	if err := t.tmpl.execute(b, data); err != nil {
+	if err := tmpl.execute(b, data); err != nil {
 		return "", nil, err
 	}
 
@@ -54,5 +51,5 @@ func (t *tqla) Compile(statement string, data any) (string, []any, error) {
 		return "", nil, err
 	}
 
-	return sql, t.parser.args, nil
+	return sql, parser.args, nil
 }
