@@ -2,6 +2,7 @@ package tqla
 
 import (
 	"testing"
+	"text/template"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -19,28 +20,52 @@ type testExampePage struct {
 }
 
 func TestTqla(t *testing.T) {
+	// optional functions
+	funcs := template.FuncMap{
+		"add": func(x int, y int) int {
+			return x + y
+		},
+	}
+
 	testCases := []struct {
 		name         string
 		templateSql  string
-		placeholder  Placeholder
+		options      []Option
 		data         any
 		expectedSql  string
 		expectedArgs []any
 	}{
 		{
 			name: "condition column where filter",
-			templateSql: `{{$column:=true }}
+			templateSql: `{{ $column:=true }}
 				select * from table where v = {{.Value }}
 				{{if $column }}
-					and c = {{$column }}
+					and c = {{ $column }}
 				{{end}}`,
 			data: struct {
 				Value int
 			}{Value: 5},
-			placeholder: Dollar,
+			options:     []Option{WithPlaceHolder(Dollar)},
 			expectedSql: `select * from table where v = $1 and c = $2`,
 			expectedArgs: []any{
 				5,
+				true,
+			},
+		},
+		{
+			name: "condition column where filter and custom function",
+			templateSql: `{{ $column:=true }}
+				select * from table where v = {{ add .Value .Value }}
+				{{ if $column }}
+					and c = {{ $column }}
+				{{ end }}`,
+			data: struct {
+				Value int
+			}{Value: 5},
+			options:     []Option{WithPlaceHolder(Dollar), WithFuncMap(funcs)},
+			expectedSql: `select * from table where v = $1 and c = $2`,
+			expectedArgs: []any{
+				10,
 				true,
 			},
 		},
@@ -51,7 +76,7 @@ func TestTqla(t *testing.T) {
 			data: struct {
 				Value []string
 			}{Value: []string{"v1", "v2", "v3"}},
-			placeholder: Dollar,
+			options:     []Option{WithPlaceHolder(Dollar)},
 			expectedSql: `select * from table where v in ( $1 )`,
 			expectedArgs: []any{
 				[]string{"v1", "v2", "v3"},
@@ -79,7 +104,7 @@ func TestTqla(t *testing.T) {
 					Dttm: "2023-08-08",
 				},
 			},
-			placeholder: Dollar,
+			options:     []Option{WithPlaceHolder(Dollar)},
 			expectedSql: `select c1, c2, c3, COALESCE(c4,'') from d.table as t where c1 ilike ($1) and (c3,c4) > ($2, $3)`,
 			expectedArgs: []any{"test",
 				1,
@@ -109,7 +134,7 @@ func TestTqla(t *testing.T) {
 					Dttm: "2023-08-08",
 				},
 			},
-			placeholder: Dollar,
+			options:     []Option{WithPlaceHolder(Dollar)},
 			expectedSql: `select c1, c2, c3, COALESCE(c4,'') from d.table as t where c1 ilike ($1) and c2 = $2 and (c3,c4) > ($3, $4)`,
 			expectedArgs: []any{"test",
 				"test",
@@ -136,7 +161,7 @@ func TestTqla(t *testing.T) {
 				FirstName: "test",
 				LastName:  "test",
 			},
-			placeholder: Dollar,
+			options:     []Option{WithPlaceHolder(Dollar)},
 			expectedSql: `select c1, c2, c3, COALESCE(c4,'') from d.table as t where c1 ilike ($1) and c2 = $2`,
 			expectedArgs: []any{"test",
 				"test",
@@ -172,7 +197,7 @@ func TestTqla(t *testing.T) {
 					Limit: 10,
 				},
 			},
-			placeholder: Dollar,
+			options:     []Option{WithPlaceHolder(Dollar)},
 			expectedSql: `select c1, c2, c3, COALESCE(c4,'') from d.table as t where c1 ilike ($1) and c2 = $2 and (c3,c4) > ($3, $4) LIMIT $5`,
 			expectedArgs: []any{"test",
 				"test",
@@ -218,7 +243,7 @@ func TestTqla(t *testing.T) {
 					Limit: 10,
 				},
 			},
-			placeholder: Dollar,
+			options:     []Option{WithPlaceHolder(Dollar)},
 			expectedSql: `select c1, c2, c3, COALESCE(c4,''), ( select count(*) as count_v from d.table as t join d.table_2 as t2 on t.c1 = t2.c2 where t.c3 ilike $1 and t.c4 = 'value' ) from d.table as t where c1 ilike ($2) and c2 = $3 and (c3,c4) > ($4, $5) LIMIT $6`,
 			expectedArgs: []any{"test",
 				"test",
@@ -232,7 +257,7 @@ func TestTqla(t *testing.T) {
 
 	for _, testCase := range testCases {
 		t.Run("test", func(t *testing.T) {
-			tqla, err := New(WithPlaceHolder(testCase.placeholder))
+			tqla, err := New(testCase.options...)
 			if err != nil {
 				t.Fatal(err)
 			}
