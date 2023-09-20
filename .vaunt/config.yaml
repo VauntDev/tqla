@@ -1,0 +1,34 @@
+version: 0.0.1
+achievements:
+  - achievement:
+      name: Mas Tqla!
+      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/mas_tqla.png
+      description: uno mas, dba..., one more, mas tqla!   
+      triggers:
+        - trigger:
+            actor: author
+            action: star
+            condition: starred = true
+  - achievement: 
+      name: Tqla Worm 
+      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_worm.png
+      description: not all bugs are bad!    
+      triggers:
+        - trigger:
+            actor: resolved_by
+            action: issue
+            condition: labels in ['bug'] & reason=COMPLETED
+  - achievement: 
+        name: Tqla Sunrise  
+        icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_sunrise.png
+        description: a shining example of your contribution to tqla!    
+        triggers:
+          - trigger:
+              actor: author
+              action: pull_request
+              condition: merged=true
+              operator: "|"         
+          - trigger: 
+              actor: reviewers
+              action: pull_request
+              condition: merged=true
