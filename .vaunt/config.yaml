@@ -29,6 +29,6 @@ achievements:
               condition: merged=true
               operator: "|"         
           - trigger: 
-              acotr: reviewers
+              actor: reviewers
               action: pull_request
               condition: merged=true
