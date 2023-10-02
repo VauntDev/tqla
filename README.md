@@ -223,3 +223,11 @@ where c1 ilike ({{ .FirstName }})
 ## Contributor Guide
 
 See our [Contributing.md](.github/CONTRIBUTING.md) file for guidance on how to contribute for tqla!
+
+### Available Awards
+
+| Name | Icon | Description |
+| ---- | ---- | ----------- |
+| Mas Tqla! | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/mas_tqla.png" width="150" /> | uno mas, dba..., one more, mas tqla! |
+| Tqla Worm | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_worm.png" width="150" /> | not all bugs are bad! |
+| Tqla Sunrise | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_sunrise.png" width="150" /> | a shining example of your contribution to tqla! |
