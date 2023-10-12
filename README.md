@@ -1,6 +1,6 @@
 # tqla
 
-[![Vaunt Community](https://api.vaunt.dev/v1/github/entities/VauntDev/repositories/undefined/badges/community)](https://community.vaunt.dev/board/VauntDev/repository/undefined)
+[![Vaunt Community](https://api.vaunt.dev/v1/github/entities/VauntDev/repositories/undefined/badges/community)](https://community.vaunt.dev/board/VauntDev/repository/tqla)
 
 Tqla - (Template Query Language Agnostic)
 
