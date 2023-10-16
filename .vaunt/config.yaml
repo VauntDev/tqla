@@ -17,7 +17,7 @@ achievements:
         - trigger:
             actor: resolved_by
             action: issue
-            condition: labels in ['bug'] & reason=COMPLETED
+            condition: labels in ['bug'] & reason = COMPLETED
   - achievement: 
         name: Tqla Sunrise  
         icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_sunrise.png
@@ -26,9 +26,9 @@ achievements:
           - trigger:
               actor: author
               action: pull_request
-              condition: merged=true
+              condition: merged = true
               operator: "|"         
           - trigger: 
               actor: reviewers
               action: pull_request
-              condition: merged=true
+              condition: merged = true
