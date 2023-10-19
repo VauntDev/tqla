@@ -3,6 +3,7 @@ package tqla
 import (
 	"fmt"
 	"io"
+	"log"
 	"text/template"
 	"text/template/parse"
 )
@@ -35,51 +36,67 @@ func (st *sqlTemplate) execute(wr io.Writer, data any) error {
 
 // formatTemplate formats all the templates defined in a template.
 func formatTemplate(t *template.Template) {
+	declaredVars := make(map[string]string)
 	for _, tmpl := range t.Templates() {
-		formatTree(tmpl.Tree)
+		formatTree(tmpl.Tree, declaredVars)
 	}
 }
 
-func formatTree(t *parse.Tree) *parse.Tree {
+func formatTree(t *parse.Tree, declared map[string]string) *parse.Tree {
 	if t.Root == nil {
 		return t
 	}
-	formatNode(t, t.Root)
+	formatNode(t, t.Root, declared)
 	return t
 }
 
-func formatNode(t *parse.Tree, n parse.Node) {
+func formatNode(t *parse.Tree, n parse.Node, declared map[string]string) {
 	switch v := n.(type) {
 	case *parse.ActionNode:
-		formatNode(t, v.Pipe)
+		formatNode(t, v.Pipe, declared)
 	case *parse.IfNode:
-		formatNode(t, v.List)
-		formatNode(t, v.ElseList)
+		formatNode(t, v.List, declared)
+		formatNode(t, v.ElseList, declared)
 	case *parse.RangeNode:
-		formatNode(t, v.List)
-		formatNode(t, v.ElseList)
+		if len(v.Pipe.Decl) == 2 {
+			declared[v.Pipe.Decl[0].String()] = v.Pipe.Decl[0].String()
+		}
+		formatNode(t, v.List, declared)
+		formatNode(t, v.ElseList, declared)
 	case *parse.ListNode:
 		if v == nil {
 			return
 		}
 		for _, n := range v.Nodes {
-			formatNode(t, n)
+			formatNode(t, n, declared)
 		}
 	case *parse.WithNode:
-		formatNode(t, v.List)
-		formatNode(t, v.ElseList)
+		formatNode(t, v.List, declared)
+		formatNode(t, v.ElseList, declared)
 	case *parse.PipeNode:
 		if len(v.Decl) > 0 {
+			for _, d := range v.Decl {
+				declared[d.String()] = d.String()
+			}
 			// If the pipe sets variables then don't try to format it
 			return
 		}
+
 		if len(v.Cmds) < 1 {
 			return
 		}
+
 		cmd := v.Cmds[len(v.Cmds)-1]
+		if _, ok := declared[cmd.String()]; ok {
+			log.Println("here")
+			return
+		}
+
+		log.Println("decl", declared)
 		if len(cmd.Args) == 1 && cmd.Args[0].Type() == parse.NodeIdentifier && cmd.Args[0].(*parse.IdentifierNode).Ident == "_sql_parser_" {
 			return
 		}
+
 		v.Cmds = append(v.Cmds, &parse.CommandNode{
 			NodeType: parse.NodeCommand,
 			Args:     []parse.Node{parse.NewIdentifier("_sql_parser_").SetTree(t).SetPos(cmd.Pos)},
