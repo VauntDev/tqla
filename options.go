@@ -37,12 +37,15 @@ func WithPlaceHolder(p Placeholder) Option {
 
 func WithFuncMap(funcs template.FuncMap) Option {
 	return newFuncOption(func(o *options) error {
-		for k := range funcs {
+		if o.funcs == nil {
+			o.funcs = template.FuncMap{}
+		}
+		for k, v := range funcs {
 			if k == "_sql_parser_" {
 				return fmt.Errorf("invalid function name, _sql_parser_ is reserved")
 			}
+			o.funcs[k] = v
 		}
-		o.funcs = funcs
 		return nil
 	})
 }
