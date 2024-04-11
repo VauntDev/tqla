@@ -32,3 +32,21 @@ achievements:
               actor: reviewers
               action: pull_request
               condition: merged = true
+    - achievement: 
+      name: Tqla A 
+      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/.png
+      description: Thank you for filing your first bug!
+      triggers:
+        - trigger:
+            actor: author
+            action: issue
+            condition: labels in ['bug']
+    - achievement: 
+      name: Tqla B 
+      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/.png
+      description: Thank you for filing your first feature enhancement!
+      triggers:
+        - trigger:
+            actor: author
+            action: issue
+            condition: labels in ['feature enhancement']
