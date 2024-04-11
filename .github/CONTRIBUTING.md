@@ -22,6 +22,8 @@ And if you like the project, but just don't have time to contribute, that's fine
   - [Improving The Documentation](#improving-the-documentation)
 - [Styleguides](#styleguides)
   - [Commit Messages](#commit-messages)
+- [Earn Badges](#earn-badges)
+  - [Clam Your Badge](#clam-your-badge)
 
 ## Code of Conduct
 
@@ -90,6 +92,10 @@ We use GitHub issues to track bugs and errors. If you run into an issue with the
 - Explain the behavior you would expect and the actual behavior.
 - Please provide as much context as possible and describe the *reproduction steps* that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
 - Provide the information you collected in the previous section.
+- Please add the tag “Bug” to the issue you opened.
+- In a gesture of following our CONTRIBUTING.md, we have set up 3 badges to award and recognize your time and effort! 
+
+
 
 Once it's filed:
 
@@ -168,6 +174,31 @@ types other than fix: and feat: are allowed, for example @commitlint/config-conv
 footers other than BREAKING CHANGE: `<description>` may be provided and follow a convention similar to git trailer format.
 Additional types are not mandated by the Conventional Commits specification, and have no implicit effect in Semantic Versioning (unless they include a BREAKING CHANGE). A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g., feat(parser): add ability to parse arrays.
 
+## Earn Badges
+
+In a gesture of following our CONTRIBUTING.md, we have set up 3 badges to award and recognize your time and effort! 
+
+#### Star the Repo 🌟
+
+Earn the 'Mas Tqla' badge by starring Tqla. It's a simple yet powerful way to support our project.
+
+#### Report a Bug 🐛
+
+Spotted a bug? Add a "bug" label to your issue report. Once confirmed, you'll be awarded the 'Bug Hunter' badge as a thank-you for keeping Tqla robust.
+
+#### Suggest an Enhancement ⚡
+
+Have a feature in mind? Label your enhancement suggestion with "enhancement". If we implement it, you'll receive the 'Innovator' badge for your visionary input.
+
+### Clam Your Badge
+
+To embed badges your earn in your readme file (or your website), simply add the following line and replace YOUR_GITHUB_USERNAME with your username (case sensitive):
+
+```html
+<p>
+  <img src="https://api.vaunt.dev/v1/github/entities/{{YOUR_GITHUB_USERNAME}}/achievements?format=svg&limit=3" width="350" />
+</p>
+```
 ## Attribution
 
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
