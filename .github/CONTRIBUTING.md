@@ -176,7 +176,7 @@ Additional types are not mandated by the Conventional Commits specification, and
 
 ## Earn Badges
 
-In a gesture of following our CONTRIBUTING.md, we have set up 3 badges to award and recognize your time and effort! 
+We have set up 3 badges to award and recognize your time and effort! 
 
 #### Star the Repo 🌟
 
@@ -188,11 +188,11 @@ Spotted a bug? Add a 'bug' label to your issue report. Once confirmed, you'll be
 
 #### Suggest an Enhancement ⚡
 
-Have a feature in mind? Label your enhancement suggestion with 'enhancement'. If we implement it, you'll receive the 'Innovator' badge for your visionary input.
+Have a feature in mind? Label your enhancement suggestion with 'enhancement'. You'll receive the 'Innovator' badge for your visionary input if we implement it.
 
 ### Clam Your Badge
 
-To embed badges your earn in your readme file (or your website), simply add the following line and replace YOUR_GITHUB_USERNAME with your username (case sensitive):
+To embed badges you earn in your readme file (or your website), simply add the following line and replace YOUR_GITHUB_USERNAME with your username (case sensitive):
 
 ```html
 <p>
