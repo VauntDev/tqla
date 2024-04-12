@@ -93,7 +93,7 @@ We use GitHub issues to track bugs and errors. If you run into an issue with the
 - Please provide as much context as possible and describe the *reproduction steps* that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
 - Provide the information you collected in the previous section.
 - Please add the 'Bug' to the issue you opened.
-- We've created a badge to reward and recognize the time and effort you put into following our CONTRIBUTING.md!
+- We've created a [badge](#earn-badges) to reward and recognize the time and effort you put into following our CONTRIBUTING.md!
 
 Once it's filed:
 
@@ -126,7 +126,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/VauntD
 - You may want to **include screenshots and animated GIFs** which help you demonstrate the steps or point out the part which the suggestion is related to. You can use [this tool](https://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux. <!-- this should only be included if the project has a GUI -->
 - **Explain why this enhancement would be useful** to most tqla users. You may also want to point out the other projects that solved it better and which could serve as inspiration.
 - Please add the 'enhancement' to the issue you opened.
-- We've created a badge to reward and recognize the time and effort you put into following our CONTRIBUTING.md!
+- We've created a [badge](#earn-badges) to reward and recognize the time and effort you put into following our CONTRIBUTING.md!
 
 <!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
 
