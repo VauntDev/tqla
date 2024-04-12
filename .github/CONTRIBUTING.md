@@ -202,3 +202,5 @@ To embed badges you earn in your readme file (or your website), simply add the f
 ## Attribution
 
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
+
+We leverage Vaunt to create a custom badge system to award contributors. [Learn more](https://github.com/VauntDev/example)
