@@ -92,10 +92,8 @@ We use GitHub issues to track bugs and errors. If you run into an issue with the
 - Explain the behavior you would expect and the actual behavior.
 - Please provide as much context as possible and describe the *reproduction steps* that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
 - Provide the information you collected in the previous section.
-- Please add the tag “Bug” to the issue you opened.
-- In a gesture of following our CONTRIBUTING.md, we have set up 3 badges to award and recognize your time and effort! 
-
-
+- Please add the 'Bug' to the issue you opened.
+- We've created a badge to reward and recognize the time and effort you put into following our CONTRIBUTING.md!
 
 Once it's filed:
 
@@ -127,12 +125,14 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/VauntD
 - **Describe the current behavior** and **explain which behavior you expected to see instead** and why. At this point you can also tell which alternatives do not work for you.
 - You may want to **include screenshots and animated GIFs** which help you demonstrate the steps or point out the part which the suggestion is related to. You can use [this tool](https://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux. <!-- this should only be included if the project has a GUI -->
 - **Explain why this enhancement would be useful** to most tqla users. You may also want to point out the other projects that solved it better and which could serve as inspiration.
+- Please add the 'enhancement' to the issue you opened.
+- We've created a badge to reward and recognize the time and effort you put into following our CONTRIBUTING.md!
 
 <!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
 
 ### Your First Code Contribution
 
-The first step to getting starting contributing to tqla is to find something to work on. Help is always welcome, and no contribution is too small!
+The first step to getting started contributing to tqla is to find something to work on. Help is always welcome, and no contribution is too small!
 
 Here are some things you can do today to get started contributing:
 
@@ -184,11 +184,11 @@ Earn the 'Mas Tqla' badge by starring Tqla. It's a simple yet powerful way to su
 
 #### Report a Bug 🐛
 
-Spotted a bug? Add a "bug" label to your issue report. Once confirmed, you'll be awarded the 'Bug Hunter' badge as a thank-you for keeping Tqla robust.
+Spotted a bug? Add a 'bug' label to your issue report. Once confirmed, you'll be awarded the 'Bug Hunter' badge as a thank-you for keeping Tqla robust.
 
 #### Suggest an Enhancement ⚡
 
-Have a feature in mind? Label your enhancement suggestion with "enhancement". If we implement it, you'll receive the 'Innovator' badge for your visionary input.
+Have a feature in mind? Label your enhancement suggestion with 'enhancement'. If we implement it, you'll receive the 'Innovator' badge for your visionary input.
 
 ### Clam Your Badge
 
