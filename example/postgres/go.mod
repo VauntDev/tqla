@@ -1,6 +1,6 @@
 module github.com/VauntDev/tqla/example/postgres
 
-go 1.20
+go 1.21
 
 replace github.com/VauntDev/tqla => ../../
 

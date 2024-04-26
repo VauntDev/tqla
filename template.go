@@ -13,7 +13,7 @@ type sqlTemplate struct {
 
 func newSqlTemplate(name string, funcs template.FuncMap) *sqlTemplate {
 	return &sqlTemplate{
-		text: template.New("name").Funcs(funcs),
+		text: template.New(name).Funcs(funcs),
 	}
 }
 
