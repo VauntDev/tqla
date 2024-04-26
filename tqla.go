@@ -2,6 +2,7 @@ package tqla
 
 import (
 	"bytes"
+	"maps"
 	"text/template"
 )
 
@@ -33,9 +34,10 @@ func (t *tqla) Compile(statement string, data any) (string, []any, error) {
 
 	parser := newSqlParser()
 
-	t.funcs["_sql_parser_"] = parser.parsefunc
+	funcs := maps.Clone(t.funcs)
+	funcs["_sql_parser_"] = parser.parsefunc
 
-	tmpl := newSqlTemplate("tqla", t.funcs)
+	tmpl := newSqlTemplate("tqla", funcs)
 
 	if err := tmpl.parse(statement); err != nil {
 		return "", nil, err
