@@ -35,7 +35,7 @@ achievements:
     - achievement: 
       name: Tqla Honey Bee
       icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_honey_bee.png
-      description: Thank you for filing your first bug!
+      description: We bee-lieve in you! This achievement celebrates your first bug report, helping make Tqla sweeter than ever.
       triggers:
         - trigger:
             actor: author
@@ -44,7 +44,7 @@ achievements:
     - achievement: 
       name: Mojito Tqla
       icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/mojito_tqla.png
-      description: Thank you for filing your first feature enhancement!
+      description: Your enhancement's a delight! Thanks for making Tqla even brighter than night.
       triggers:
         - trigger:
             actor: author
