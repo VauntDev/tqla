@@ -34,7 +34,7 @@ achievements:
               condition: merged = true
     - achievement: 
       name: Tqla Honey Bee
-      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/.png
+      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_honey_bee.png
       description: Thank you for filing your first bug!
       triggers:
         - trigger:
@@ -43,7 +43,7 @@ achievements:
             condition: labels in ['bug']
     - achievement: 
       name: Mojito Tqla
-      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/.png
+      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/mojito_tqla.png
       description: Thank you for filing your first feature enhancement!
       triggers:
         - trigger:
