@@ -33,7 +33,7 @@ achievements:
               action: pull_request
               condition: merged = true
     - achievement: 
-      name: Tqla A - need a name and image
+      name: Tqla Honey Bee
       icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/.png
       description: Thank you for filing your first bug!
       triggers:
@@ -42,7 +42,7 @@ achievements:
             action: issue
             condition: labels in ['bug']
     - achievement: 
-      name: Tqla B - need a name and image 
+      name: Mojito Tqla
       icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/.png
       description: Thank you for filing your first feature enhancement!
       triggers:
