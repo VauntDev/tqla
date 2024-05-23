@@ -49,4 +49,4 @@ achievements:
         - trigger:
             actor: author
             action: issue
-            condition: labels in ['enhancement']
+            condition: labels in ['enhancement'] & reactors in ['elewis787', 'jeff10110322', 'simonmazzaroth']
