@@ -23,18 +23,17 @@ And if you like the project, but just don't have time to contribute, that's fine
 - [Styleguides](#styleguides)
   - [Commit Messages](#commit-messages)
 - [Earn Badges](#earn-badges)
-  - [Clam Your Badge](#clam-your-badge)
+  - [Claim Your Badge](#claim-your-badge)
 
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the
 [tqla Code of Conduct](https://github.com/VauntDev/tqlablob/master/CODE_OF_CONDUCT.md).
-By participating, you are expected to uphold this code. Please report unacceptable behavior
-to <platform-eng@vaunt.dev>.
+By participating, you are expected to uphold this code. Please report unacceptable behavior to <platform-eng@vaunt.dev>.
 
 ## I Have a Question
 
-> If you want to ask a question, we assume that you have read the available [Documentation](https://github.com/VauntDev/tqla).
+If you want to ask a question, we assume that you have read the available [Documentation](https://github.com/VauntDev/tqla).
 
 Before you ask a question, it is best to search for existing [Issues](https://github.com/VauntDev/tqla/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
 
@@ -45,21 +44,6 @@ If you then still feel the need to ask a question and need clarification, we rec
 - Provide project and platform versions (go, os, etc), depending on what seems relevant.
 
 We will then take care of the issue as soon as possible.
-
-<!--
-You might want to create a separate issue tag for questions and include it in this description. People should then tag their issues accordingly.
-
-Depending on how large the project is, you may want to outsource the questioning, e.g. to Stack Overflow or Gitter. You may add additional contact and information possibilities:
-- IRC
-- Slack
-- Gitter
-- Stack Overflow tag
-- Blog
-- FAQ
-- Roadmap
-- E-Mail List
-- Forum
--->
 
 ## I Want To Contribute
 
@@ -153,7 +137,7 @@ Edits to the readme, testing and examples are welcome! The best way to improve o
 
 ### Commit Messages
 
-We following [convention](https://www.conventionalcommits.org/en/v1.0.0/#summary) commit standards
+We follow [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/#summary) standards
 
 The commit message should be structured as follows:
 
@@ -167,12 +151,13 @@ The commit message should be structured as follows:
 
 The commit contains the following structural elements, to communicate intent to the consumers of your library:
 
-fix: a commit of the type fix patches a bug in your codebase (this correlates with PATCH in Semantic Versioning).
-feat: a commit of the type feat introduces a new feature to the codebase (this correlates with MINOR in Semantic Versioning).
-BREAKING CHANGE: a commit that has a footer BREAKING CHANGE:, or appends a ! after the type/scope, introduces a breaking API change (correlating with MAJOR in Semantic Versioning). A BREAKING CHANGE can be part of commits of any type.
-types other than fix: and feat: are allowed, for example @commitlint/config-conventional (based on the Angular convention) recommends build:, chore:, ci:, docs:, style:, refactor:, perf:, test:, and others.
-footers other than BREAKING CHANGE: `<description>` may be provided and follow a convention similar to git trailer format.
-Additional types are not mandated by the Conventional Commits specification, and have no implicit effect in Semantic Versioning (unless they include a BREAKING CHANGE). A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g., feat(parser): add ability to parse arrays.
+1. **fix**: a commit of the type fix patches a bug in your codebase (this correlates with PATCH in Semantic Versioning).
+2. **feat**: a commit of the type feat introduces a new feature to the codebase (this correlates with MINOR in Semantic Versioning).
+3. **BREAKING CHANGE**: a commit that has a footer `BREAKING CHANGE:`, or appends a `!` after the type/scope, introduces a breaking API change (correlating with MAJOR in Semantic Versioning). A BREAKING CHANGE can be part of commits of any *type*.
+4. *types* other than `fix:` and `feat:` are allowed, for example @commitlint/config-conventional (based on the Angular convention) recommends `build:`, `chore:`, `ci:`, `docs:`, `style:`, `refactor:`, `perf:`, `test:`, and others.
+5. *footers* other than `BREAKING CHANGE: <description>` may be provided and follow a convention similar to git trailer format.
+
+Additional types are not mandated by the Conventional Commits specification, and have no implicit effect in Semantic Versioning (unless they include a BREAKING CHANGE). A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g., `feat(parser): add ability to parse arrays`.
 
 ## Earn Badges
 
@@ -190,7 +175,7 @@ Spotted a bug? Add a `bug` label to your issue report. Once confirmed, you'll be
 
 Have a feature in mind? Label your enhancement suggestion with `enhancement`. You'll receive the 'Innovator' badge for your visionary input if we implement it.
 
-### Clam Your Badge
+### Claim Your Badge
 
 To embed badges you earn in your readme file (or your website), simply add the following line and replace YOUR_GITHUB_USERNAME with your username (case sensitive):
 
