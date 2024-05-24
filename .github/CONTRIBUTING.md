@@ -2,7 +2,7 @@
 
 First off, thanks for taking the time to contribute! ❤️
 
-All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
+All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. We've created a badge system to reward and recognize the time and effort you put into following our CONTRIBUTING.md! The community looks forward to your contributions. 🎉
 
 And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
 
@@ -22,6 +22,8 @@ And if you like the project, but just don't have time to contribute, that's fine
   - [Improving The Documentation](#improving-the-documentation)
 - [Styleguides](#styleguides)
   - [Commit Messages](#commit-messages)
+- [Earn Badges](#earn-badges)
+  - [Clam Your Badge](#clam-your-badge)
 
 ## Code of Conduct
 
@@ -73,7 +75,7 @@ A good bug report shouldn't leave others needing to chase you up for more inform
 
 - Make sure that you are using the latest version.
 - Determine if your bug is really a bug and not an error on your side e.g. using incompatible environment components/versions (Make sure that you have read the [documentation](https://github.com/VauntDev/tqla). If you are looking for support, you might want to check [this section](#i-have-a-question)).
-- To see if other users have experienced (and potentially already solved) the same issue you are having, check if there is not already a bug report existing for your bug or error in the [bug tracker](https://github.com/VauntDev/tqlaissues?q=label%3Abug).
+- To see if other users have experienced (and potentially already solved) the same issue you are having, check if there is not already a bug report existing for your bug or error in the [bug tracker](https://github.com/VauntDev/tqla/issues?q=label%3Abug).
 - Also make sure to search the internet (including Stack Overflow) to see if users outside of the GitHub community have discussed the issue.
 - Collect information about the bug:
   - Stack trace (Traceback)
@@ -90,6 +92,8 @@ We use GitHub issues to track bugs and errors. If you run into an issue with the
 - Explain the behavior you would expect and the actual behavior.
 - Please provide as much context as possible and describe the *reproduction steps* that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
 - Provide the information you collected in the previous section.
+- Please add the `Bug` to the issue you opened.
+- We've created a [badge](#earn-badges) to reward and recognize the time and effort you put into following our CONTRIBUTING.md!
 
 Once it's filed:
 
@@ -121,12 +125,14 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/VauntD
 - **Describe the current behavior** and **explain which behavior you expected to see instead** and why. At this point you can also tell which alternatives do not work for you.
 - You may want to **include screenshots and animated GIFs** which help you demonstrate the steps or point out the part which the suggestion is related to. You can use [this tool](https://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux. <!-- this should only be included if the project has a GUI -->
 - **Explain why this enhancement would be useful** to most tqla users. You may also want to point out the other projects that solved it better and which could serve as inspiration.
+- Please add the `enhancement` to the issue you opened.
+- We've created a [badge](#earn-badges) to reward and recognize the time and effort you put into following our CONTRIBUTING.md!
 
 <!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
 
 ### Your First Code Contribution
 
-The first step to getting starting contributing to tqla is to find something to work on. Help is always welcome, and no contribution is too small!
+The first step to getting started contributing to tqla is to find something to work on. Help is always welcome, and no contribution is too small!
 
 Here are some things you can do today to get started contributing:
 
@@ -168,6 +174,33 @@ types other than fix: and feat: are allowed, for example @commitlint/config-conv
 footers other than BREAKING CHANGE: `<description>` may be provided and follow a convention similar to git trailer format.
 Additional types are not mandated by the Conventional Commits specification, and have no implicit effect in Semantic Versioning (unless they include a BREAKING CHANGE). A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g., feat(parser): add ability to parse arrays.
 
+## Earn Badges
+
+We have set up 3 badges to award and recognize your time and effort! 
+
+#### Star the Repo 🌟
+
+Earn the 'Mas Tqla' badge by starring Tqla. It's a simple yet powerful way to support our project.
+
+#### Report a Bug 🐛
+
+Spotted a bug? Add a `bug` label to your issue report. Once confirmed, you'll be awarded the 'Bug Hunter' badge as a thank-you for keeping Tqla robust.
+
+#### Suggest an Enhancement ⚡
+
+Have a feature in mind? Label your enhancement suggestion with `enhancement`. You'll receive the 'Innovator' badge for your visionary input if we implement it.
+
+### Clam Your Badge
+
+To embed badges you earn in your readme file (or your website), simply add the following line and replace YOUR_GITHUB_USERNAME with your username (case sensitive):
+
+```html
+<p>
+  <img src="https://api.vaunt.dev/v1/github/entities/{{YOUR_GITHUB_USERNAME}}/achievements?format=svg&limit=3" width="350" />
+</p>
+```
 ## Attribution
 
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
+
+We leverage Vaunt to create a custom badge system to award contributors. [Learn more](https://github.com/VauntDev/example)
