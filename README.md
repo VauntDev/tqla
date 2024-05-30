@@ -12,11 +12,11 @@ Mas sql templating!!
 
 ## Use
 
-Tqla is a small light weight text parser that wraps the golang `text/template` standard library. The primary purpose of tqla is to parse a text template and replace any variable with a placeholder. Variables that are replaced with placeholders are added to an args slice that can be passed to standard db driver.
+Tqla is a small lightweight text parser that wraps the golang `text/template` standard library. The primary purpose of tqla is to parse a text template and replace any variable with a placeholder. Variables that are replaced with placeholders are added to an args slice that can be passed to the standard db driver.
 
-Similar libraries are exposed to sql injection, as they use the text/template library to do a simple text replace. Tqla prevents sql injection by leveraging DB placeholders as described [here](https://go.dev/doc/database/sql-injection).
+Similar libraries are exposed to sql injection, as they use the text/template library to do a simple text replacement. Tqla prevents sql injection by leveraging DB placeholders as described [here](https://go.dev/doc/database/sql-injection).
 
-Currently, tqla does not attempt do to do any sql validation, this may change in the future.
+Currently, tqla does not attempt to do any sql validation, this may change in the future.
 
 Below is a simple example on how it can be used:
 
@@ -109,17 +109,17 @@ func main() {
 }
 ```
 
-The test files also include examples on what can be done with tqla.
+The test files also include examples of what can be done with tqla.
 
 ### Text Templating Basics
 
 Tqla leverages golang text templating framework. Similar to the html/template package, tqla is a wrapper around text/templating that replaces values with db placeholders.
 
-Below are a few common examples to get you started with golang's text templating. More information can be found at [text/templating](https://pkg.go.dev/text/template).
+Below are a few common examples to get you started with Golang's text templating. More information can be found at [text/templating](https://pkg.go.dev/text/template).
 
 #### Actions
 
-Actions represent data evaluations, functions, conditions and control loops. Actions are represented by `{{ <action> }}`.
+Actions represent data evaluations, functions, conditions, and control loops. Actions are represented by `{{ <action> }}`.
 
 #### Conditions
 
@@ -145,7 +145,7 @@ or more complex uses:
 
 #### Loops
 
-The `range` function is support in templates.
+The `range` function is supported in templates.
 
 below are a few examples
 
@@ -167,7 +167,7 @@ or
 
 #### Functions
 
-Go's text tempalating has a number of build in functions outlined [here](https://pkg.go.dev/text/template#hdr-Functions). Tqla also supports additional functions defined by the user.
+Go's text templating has several built-in functions outlined [here](https://pkg.go.dev/text/template#hdr-Functions). Tqla also supports additional functions defined by the user.
 
 Here is an example of adding and calling a custom function within a template:
 
@@ -188,7 +188,7 @@ if err != nil {
 
 Refer to the go doc for text/templating for a deeper dive into custom functions.
 
-#### Sql Tempaltes
+#### Sql Templates
 
 A complete sql template may look something like the following:
 
@@ -222,7 +222,7 @@ where c1 ilike ({{ .FirstName }})
 
 ## Contributor Guide
 
-See our [Contributing.md](.github/CONTRIBUTING.md) file for guidance on how to contribute for tqla!
+See our [Contributing.md](.github/CONTRIBUTING.md) file for guidance on how to contribute to tqla!
 
 ### Available Awards
 
