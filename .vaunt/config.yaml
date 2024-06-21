@@ -19,20 +19,20 @@ achievements:
             action: issue
             condition: labels in ['bug'] & reason = COMPLETED
   - achievement: 
-        name: Tqla Sunrise  
-        icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_sunrise.png
-        description: a shining example of your contribution to tqla!    
-        triggers:
-          - trigger:
-              actor: author
-              action: pull_request
-              condition: merged = true
-              operator: "|"         
-          - trigger: 
-              actor: reviewers
-              action: pull_request
-              condition: merged = true
-    - achievement: 
+      name: Tqla Sunrise
+      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_sunrise.png
+      description: a shining example of your contribution to tqla!
+      triggers:
+        - trigger:
+            actor: author
+            action: pull_request
+            condition: merged = true
+            operator: "|"
+        - trigger:
+            actor: reviewers
+            action: pull_request
+            condition: merged = true
+  - achievement:
       name: Tqla Honey Bee
       icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_honey_bee.png
       description: We bee-lieve in you! This achievement celebrates your first bug report, helping make Tqla sweeter than ever.
@@ -41,7 +41,7 @@ achievements:
             actor: author
             action: issue
             condition: labels in ['bug'] & reactors in ['elewis787', 'jeff10110322', 'simonmazzaroth']
-    - achievement: 
+  - achievement:
       name: Mojito Tqla
       icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/mojito_tqla.png
       description: Your enhancement's a delight! Thanks for making Tqla even brighter than night.
