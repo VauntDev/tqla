@@ -2,7 +2,7 @@ version: 0.0.1
 achievements:
   - achievement:
       name: Mas Tqla!
-      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/mas_tqla.png
+      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/mas_tqla_v2.png
       description: uno mas, dba..., one more, mas tqla!   
       triggers:
         - trigger:
@@ -11,7 +11,7 @@ achievements:
             condition: starred = true
   - achievement: 
       name: Tqla Worm 
-      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_worm.png
+      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_worm_v2.png
       description: not all bugs are bad!    
       triggers:
         - trigger:
@@ -20,7 +20,7 @@ achievements:
             condition: labels in ['bug'] & reason = COMPLETED
   - achievement: 
       name: Tqla Sunrise
-      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_sunrise.png
+      icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_sunrise_v2.png
       description: a shining example of your contribution to tqla!
       triggers:
         - trigger:

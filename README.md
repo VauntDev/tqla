@@ -228,9 +228,9 @@ See our [Contributing.md](.github/CONTRIBUTING.md) file for guidance on how to c
 
 | Name | Icon | Description |
 | ---- | ---- | ----------- |
-| Mas Tqla! | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/mas_tqla.png" width="150" /> | uno mas, dba..., one more, mas tqla! |
-| Tqla Worm | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_worm.png" width="150" /> | not all bugs are bad! |
-| Tqla Sunrise | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_sunrise.png" width="150" /> | a shining example of your contribution to tqla! |
+| Mas Tqla! | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/mas_tqla_v2.png" width="150" /> | uno mas, dba..., one more, mas tqla! |
+| Tqla Worm | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_worm_v2.png" width="150" /> | not all bugs are bad! |
+| Tqla Sunrise | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_sunrise_v2.png" width="150" /> | a shining example of your contribution to tqla! |
 | Tqla Honey Bee | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_honey_bee.png" width="150" /> | We bee-lieve in you! This achievement celebrates your first bug report, helping make Tqla sweeter than ever. |
 | Mojito Tqla | <img src="https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/mojito_tqla.png" width="150" /> | Your enhancement's a delight! Thanks for making Tqla even brighter than night. |
 
