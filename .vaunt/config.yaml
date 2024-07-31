@@ -15,9 +15,9 @@ achievements:
       description: not all bugs are bad!    
       triggers:
         - trigger:
-            actor: resolved_by
+            actor: author
             action: issue
-            condition: labels in ['bug'] & reason = COMPLETED
+            condition: labels in ['bug'] & closed = true & reason = COMPLETED
   - achievement: 
       name: Tqla Sunrise
       icon: https://raw.githubusercontent.com/VauntDev/tqla/main/.vaunt/tqla_sunrise_v2.png
