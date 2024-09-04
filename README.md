@@ -1,6 +1,6 @@
 # tqla
 
-[![Vaunt Community](https://api.vaunt.dev/v1/github/entities/VauntDev/repositories/undefined/badges/community)](https://community.vaunt.dev/board/VauntDev/repository/tqla)
+[![Vaunt Community](https://api.vaunt.dev/v1/github/entities/VauntDev/repositories/undefined/badges/community)](https://community.vaunt.dev/board/VauntDev/repository/tqla) [![Go Report Card](https://goreportcard.com/badge/github.com/VauntDev/tqla)](https://goreportcard.com/report/github.com/VauntDev/tqla)
 
 Tqla - (Template Query Language Agnostic)
 
