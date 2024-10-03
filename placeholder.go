@@ -29,6 +29,8 @@ var (
 	// AtP is a PlaceholderFormat instance that replaces placeholders with
 	// "@p"-prefixed positional placeholders (e.g. @p1, @p2, @p3).
 	AtP = atpFormat{}
+
+	whitespaceRegex = regexp.MustCompile(`\s+`)
 )
 
 // questionFormat is the default format and should be treated as a pass through
@@ -79,7 +81,6 @@ func format(sql, prefix string) (string, error) {
 		}
 	}
 	buf.WriteString(sql)
-	whitespaceRegex := regexp.MustCompile(`\s+`)
 	s := whitespaceRegex.ReplaceAllString(strings.TrimSpace(buf.String()), " ")
 	return s, nil
 }
