@@ -4,4 +4,5 @@ use (
         .
         ./example/sqlite
         ./example/postgres
+        ./example/mysql
 )
