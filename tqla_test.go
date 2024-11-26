@@ -253,6 +253,42 @@ func TestTqla(t *testing.T) {
 				10,
 			},
 		},
+		{
+			name: "order by",
+			templateSql: `
+			{{ $len := len .Columns }}
+			SELECT * FROM t1 WHERE username = {{ .Username }} 
+			{{ if gt $len 0 }}
+			ORDER BY
+				{{ $pos := 0}}
+				{{ range $i, $v := .Columns }}
+					{{ if eq $v "username" }}
+						username
+					{{ end }}
+					{{ $pos = add $pos 1 }}
+					{{ if eq $pos $len }}{{ else }},{{ end }}
+				{{ end }} 
+				{{ if eq .Order "ASC" }} 
+					ASC
+				{{ else }}
+					DESC
+				{{ end }}
+			{{ end }}`,
+
+			data: &struct {
+				Username string
+				Order    string
+				Columns  []string
+			}{
+				Username: "test",
+				Order:    "ASC",
+				Columns:  []string{"username"},
+			},
+			options: []Option{
+				WithPlaceHolder(Dollar), WithFuncMap(funcs)},
+			expectedSql:  `SELECT * FROM t1 WHERE username = $1 ORDER BY username ASC`,
+			expectedArgs: []any{"test"},
+		},
 	}
 
 	for _, testCase := range testCases {
